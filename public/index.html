@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fresh Cut - Premium Fresh Meat Delivery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #FFF8F0; color: #2C2C2C; padding-top: 80px; }
+        .navbar { background: #2C2C2C; box-shadow: 0 2px 20px rgba(0,0,0,0.1); padding: 1rem 0; }
+        .navbar-brand { font-size: 1.8rem; font-weight: 700; color: #D4AF37 !important; }
+        .navbar-brand span { color: white; }
+        .nav-link { color: white !important; font-weight: 500; transition: color 0.3s; }
+        .nav-link:hover { color: #D4AF37 !important; }
+        .btn-outline-gold { border: 2px solid #D4AF37; background: transparent; color: #D4AF37 !important; border-radius: 50px; padding: 8px 20px; transition: all 0.3s; }
+        .btn-outline-gold:hover { background: #D4AF37; color: #2C2C2C !important; }
+        .hero { background: linear-gradient(135deg, #2C2C2C 0%, #1a1a2e 100%); color: white; min-height: 80vh; padding: 80px 0; }
+        .btn-primary { background: #8B0000; border: none; border-radius: 50px; padding: 12px 30px; font-weight: 600; transition: all 0.3s; }
+        .btn-primary:hover { background: #6b0000; transform: translateY(-2px); }
+        .text-gold { color: #D4AF37; }
+        .stat-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 15px; padding: 20px; text-align: center; }
+        .stat-card h3 { color: #D4AF37; font-size: 2rem; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header .subtitle { color: #8B0000; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .section-header h2 { font-size: 2.5rem; margin-top: 10px; }
+        .vendors-section { padding: 80px 0; background: white; }
+        .vendor-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s; margin-bottom: 30px; cursor: pointer; }
+        .vendor-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .vendor-header { background: linear-gradient(135deg, #2C2C2C, #1a1a2e); padding: 30px; text-align: center; color: white; position: relative; }
+        .vendor-logo { width: 80px; height: 80px; background: #D4AF37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 2rem; color: #2C2C2C; }
+        .verified-badge { position: absolute; top: 20px; right: 20px; color: #D4AF37; font-size: 1.5rem; }
+        .vendor-body { padding: 20px; }
+        .vendor-rating { color: #D4AF37; margin-bottom: 10px; }
+        .hygiene-score { background: #8FBC8F; color: white; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; display: inline-block; }
+        .products-section { padding: 80px 0; background: #F5F5F5; }
+        .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: all 0.3s; margin-bottom: 30px; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); }
+        .product-image { height: 200px; background-size: cover; background-position: center; position: relative; }
+        .freshness-badge { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; }
+        .freshness-score { position: absolute; bottom: 10px; left: 10px; background: #8FBC8F; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .cut-time { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.8); color: #D4AF37; padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; }
+        .product-info { padding: 20px; }
+        .product-vendor { font-size: 0.85rem; color: #8B0000; font-weight: 500; }
+        .product-title { font-size: 1.2rem; font-weight: 600; margin: 10px 0; }
+        .product-price { font-size: 1.3rem; font-weight: 700; color: #8B0000; }
+        .quantity-selector { display: flex; align-items: center; gap: 10px; }
+        .quantity-selector button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ddd; background: white; cursor: pointer; }
+        .dashboard-card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 20px; }
+        .tracking-timeline { display: flex; justify-content: space-between; margin: 30px 0; position: relative; }
+        .tracking-timeline::before { content: ''; position: absolute; top: 25px; left: 0; right: 0; height: 2px; background: #ddd; z-index: 1; }
+        .timeline-step { text-align: center; position: relative; z-index: 2; background: white; padding: 0 10px; flex: 1; }
+        .timeline-step i { font-size: 30px; background: white; padding: 10px; border-radius: 50%; border: 3px solid #ddd; color: #999; }
+        .timeline-step.active i { border-color: #D4AF37; color: #D4AF37; }
+        .timeline-step.completed i { border-color: #8FBC8F; color: #8FBC8F; }
+        .timeline-step span { display: block; margin-top: 10px; font-size: 0.8rem; }
+        footer { background: #2C2C2C; color: white; padding: 50px 0 20px; }
+        footer h4, footer h5 { margin-bottom: 20px; }
+        footer ul { list-style: none; padding: 0; }
+        footer ul li a { color: #aaa; text-decoration: none; }
+        footer ul li a:hover { color: #D4AF37; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2rem; } .tracking-timeline { flex-direction: column; } .tracking-timeline::before { display: none; } .timeline-step { margin-bottom: 20px; } }
+        .cart-badge { position: absolute; top: -8px; right: -8px; background: #D4AF37; color: #2C2C2C; border-radius: 50%; padding: 2px 6px; font-size: 10px; font-weight: bold; }
+        .search-filter { display: flex; gap: 10px; margin-bottom: 30px; }
+        .search-filter input, .search-filter select { flex: 1; padding: 12px 20px; border: 2px solid #ddd; border-radius: 50px; }
+        .search-filter button { background: #8B0000; color: white; border: none; padding: 0 30px; border-radius: 50px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-drumstick-bite"></i> Fresh<span>Cut</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#vendors">Vendors</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                    <li class="nav-item" id="auth-nav">
+                        <a class="nav-link btn btn-outline-gold ms-2" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="fas fa-user"></i> Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row min-vh-100 align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold">Fresh Meat, <span class="text-gold">Cut Within 60 Minutes</span></h1>
+                    <p class="lead mt-3">Premium quality meat from verified local vendors. Real-time freshness tracking.</p>
+                    <a href="#vendors" class="btn btn-primary btn-lg me-3 mt-3">Shop Now</a>
+                    <div class="row mt-5">
+                        <div class="col-4"><div class="stat-card"><i class="fas fa-clock fa-2x text-gold"></i><h3>60 min</h3><p>Fresh Cut Guarantee</p></div></div>
+                        <div class="col-4"><div class="stat-card"><i class="fas fa-store fa-2x text-gold"></i><h3 id="vendorCount">0</h3><p>Verified Vendors</p></div></div>
+                        <div class="col-4"><div class="stat-card"><i class="fas fa-smile fa-2x text-gold"></i><h3>100%</h3><p>Hygiene Guaranteed</p></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1602470520998-f4a52199a3d6?w=500&h=400&fit=crop" class="img-fluid rounded-4 shadow-lg" alt="Fresh Meat">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vendors" class="vendors-section">
+        <div class="container">
+            <div class="section-header"><span class="subtitle">Trusted Partners</span><h2>Our Verified Vendors</h2><p>Choose from the best local meat shops in your area</p></div>
+            <div class="row" id="vendorsContainer">Loading vendors...</div>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header"><span class="subtitle">Fresh Collection</span><h2>Today's Fresh Cuts</h2><p>Real-time freshness scores updated every minute</p></div>
+            <div class="search-filter">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <select id="categoryFilter"><option value="">All Categories</option><option value="chicken">Chicken</option><option value="mutton">Mutton</option><option value="fish">Fish</option><option value="prawns">Prawns</option></select>
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="row" id="productsContainer">Loading products...</div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5>Welcome Back</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body"><form id="loginForm"><input type="email" id="loginEmail" class="form-control mb-2" placeholder="Email" required><input type="password" id="loginPassword" class="form-control mb-2" placeholder="Password" required><button type="submit" class="btn btn-primary w-100">Login</button></form><hr><p class="text-center">New? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></p></div></div></div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5>Join Fresh Cut</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body"><form id="registerForm"><input type="text" id="regName" class="form-control mb-2" placeholder="Full Name" required><input type="email" id="regEmail" class="form-control mb-2" placeholder="Email" required><input type="tel" id="regPhone" class="form-control mb-2" placeholder="Phone" required><input type="password" id="regPassword" class="form-control mb-2" placeholder="Password" required><textarea id="regAddress" class="form-control mb-2" placeholder="Address" rows="2"></textarea><select id="regRole" class="form-select mb-2"><option value="customer">Customer</option><option value="vendor">Vendor</option></select><button type="submit" class="btn btn-primary w-100">Register</button></form></div></div></div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h5><i class="fas fa-shopping-cart"></i> Your Cart</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body" id="cartItems"></div><div class="modal-footer"><h5>Total: ₹<span id="cartTotal">0</span></h5><button class="btn btn-primary" onclick="placeOrder()">Place Order</button></div></div></div>
+    </div>
+
+    <!-- Vendor Dashboard Modal -->
+    <div class="modal fade" id="vendorDashboardModal" tabindex="-1">
+        <div class="modal-dialog modal-xl"><div class="modal-content"><div class="modal-header"><h5><i class="fas fa-store"></i> Vendor Dashboard</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body"><div class="row">
+            <div class="col-md-4"><div class="dashboard-card"><h4>Store Settings</h4>
+                <form id="vendorStoreForm"><input type="text" id="storeName" class="form-control mb-2" placeholder="Store Name"><input type="text" id="storePhone" class="form-control mb-2" placeholder="Phone Number"><textarea id="storeDesc" class="form-control mb-2" placeholder="Store Description" rows="2"></textarea><input type="text" id="storeAddress" class="form-control mb-2" placeholder="Address"><div class="row"><div class="col-6"><input type="text" id="storeCity" class="form-control mb-2" placeholder="City"></div><div class="col-6"><input type="text" id="storePincode" class="form-control mb-2" placeholder="Pincode"></div></div>
+                <div class="row"><div class="col-6"><label class="form-label small">Opening Time</label><input type="time" id="openingTime" class="form-control mb-2"></div><div class="col-6"><label class="form-label small">Closing Time</label><input type="time" id="closingTime" class="form-control mb-2"></div></div>
+                <button type="submit" class="btn btn-primary w-100">Update Store</button></form></div></div>
+            <div class="col-md-8"><div class="dashboard-card"><h4>Add New Product</h4>
+                <form id="addProductForm"><div class="row"><div class="col-md-6"><input type="text" id="productName" class="form-control mb-2" placeholder="Product Name"></div><div class="col-md-6"><select id="productCategory" class="form-control mb-2"><option value="chicken">Chicken</option><option value="mutton">Mutton</option><option value="fish">Fish</option><option value="prawns">Prawns</option></select></div>
+                <div class="col-md-4"><input type="number" id="productPrice" class="form-control mb-2" placeholder="Price (₹)"></div><div class="col-md-4"><input type="number" id="productQuantity" class="form-control mb-2" placeholder="Quantity (kg)"></div><div class="col-md-4"><select id="productCut" class="form-control mb-2"><option value="curry cut">Curry Cut</option><option value="boneless">Boneless</option><option value="whole">Whole</option></select></div>
+                <div class="col-12"><input type="text" id="productImage" class="form-control mb-2" placeholder="Image URL (optional)"><small class="text-muted">Use images from Unsplash or Pexels</small></div>
+                <div class="col-12 mt-2"><button type="submit" class="btn btn-success w-100">Add Product</button></div></div></form></div>
+                <div class="dashboard-card"><h4>My Products</h4><div id="vendorProductsList"></div></div>
+                <div class="dashboard-card"><h4>Recent Orders</h4><div id="vendorOrdersList"></div></div></div>
+        </div></div></div></div>
+    </div>
+
+    <footer><div class="container text-center"><p>&copy; 2024 Fresh Cut. All rights reserved. | Fresh Meat, Fresh Cut Guarantee</p></div></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

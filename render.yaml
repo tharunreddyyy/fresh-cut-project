@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: fresh-cut-api
+    env: node
+    region: singapore   # closest to India; change to 'oregon' for US
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false   # You will set this manually in Render dashboard
+      - key: JWT_SECRET
+        sync: false   # You will set this manually in Render dashboard
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
