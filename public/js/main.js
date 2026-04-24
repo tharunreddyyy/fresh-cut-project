@@ -1,4 +1,8 @@
-const API_URL = 'http://localhost:5000/api';
+// Auto-detect API URL: works on localhost AND Render deployment
+const BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://localhost:5000'
+  : window.location.origin;
+const API_URL = `${BASE_URL}/api`;
 let currentUser = null;
 let cart = [];
 let socket = null;
@@ -11,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initSocket() {
-    socket = io('http://localhost:5000');
+    socket = io(BASE_URL);
     socket.on('order-update', (data) => showNotification('Order Update', `Order ${data.orderId} is ${data.status}`));
     socket.on('new-order', () => { if (currentUser?.role === 'vendor') { showNotification('New Order!', 'You have a new order'); loadVendorOrders(); } });
 }
